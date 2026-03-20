@@ -4,19 +4,27 @@ function LockIcon() { return <svg xmlns="http://www.w3.org/2000/svg" width="14" 
 
 export function PublicHeader() {
     return (
-        <header className="bg-white border-b border-slate-200 print:hidden">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-4 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4">
-                <div className="flex items-center gap-3 sm:gap-4 w-full sm:w-auto justify-center sm:justify-start">
+        <header className="bg-white border-b border-slate-200 print:hidden w-full overflow-hidden">
+            <div className="max-w-7xl mx-auto px-4 py-3 sm:py-4 flex flex-col items-center gap-3">
+                <div className="flex items-center gap-3 w-full justify-center">
                     <div className="w-8 h-8 sm:w-10 sm:h-10 bg-slate-900 rounded flex items-center justify-center text-white font-black text-lg sm:text-xl shrink-0">FI</div>
-                    <div>
-                        <h1 className="text-base sm:text-lg font-black text-slate-900 tracking-tight whitespace-nowrap">Falcon Island <span className="text-slate-400 font-semibold tracking-wide uppercase text-xs sm:text-sm ml-1">Weekly</span></h1>
+                    <div className="flex-1 text-center sm:text-left">
+                        <h1 className="text-base sm:text-lg font-black text-slate-900 tracking-tight leading-tight">
+                            Falcon Island <br className="sm:hidden" />
+                            <span className="text-slate-400 font-semibold tracking-wide uppercase text-xs sm:text-sm ml-0 sm:ml-1">Weekly</span>
+                        </h1>
                     </div>
                 </div>
-                <nav className="flex items-center justify-center sm:justify-end gap-4 sm:gap-6 text-xs sm:text-sm font-bold text-slate-500 w-full sm:w-auto flex-wrap">
+                
+                <nav className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-xs sm:text-sm font-bold text-slate-500 w-full">
                     <Link to="/" className="hover:text-amber-600 transition-colors uppercase tracking-wider">Latest</Link>
                     <Link to="/reports" className="hover:text-amber-600 transition-colors uppercase tracking-wider">Archive</Link>
                     <span className="text-slate-200 hidden sm:inline">|</span>
-                    <Link to="/admin" className="hover:text-amber-600 transition-colors uppercase tracking-wider flex items-center gap-1.5"><LockIcon /> <span className="hidden sm:inline">Admin Login</span><span className="sm:hidden">Admin</span></Link>
+                    <Link to="/admin" className="hover:text-amber-600 transition-colors uppercase tracking-wider flex items-center gap-1.5">
+                        <LockIcon /> 
+                        <span className="hidden sm:inline">Admin Login</span>
+                        <span className="sm:hidden">Admin</span>
+                    </Link>
                 </nav>
             </div>
         </header>
