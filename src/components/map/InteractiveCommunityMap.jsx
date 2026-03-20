@@ -57,7 +57,7 @@ export function InteractiveCommunityMap({ report }) {
     });
 
     const filteredPoints = enhancedPoints.filter(p => {
-        if (activeFilter === 'Villas' || activeFilter === 'Handed Over') return false;
+        if (activeFilter === 'Villas' || activeFilter === 'Handed Over' || activeFilter === 'Villas HO') return false;
         if (activeFilter === 'Completed' && !p.status?.toLowerCase().includes('completed')) return false;
         if (activeFilter === 'In Progress' && !p.status?.toLowerCase().includes('progress')) return false;
         if (searchQuery && !p.title?.toLowerCase().includes(searchQuery.toLowerCase())) return false;
@@ -66,7 +66,9 @@ export function InteractiveCommunityMap({ report }) {
 
     const filteredAreas = areas.filter(a => {
         if (activeFilter === 'Upgrade Projects') return false;
-        if (activeFilter === 'Handed Over' && !a.status?.toLowerCase().includes('handed over')) return false;
+        if (activeFilter === 'In Progress') return false;
+        if (activeFilter === 'Completed') return false;
+        if ((activeFilter === 'Handed Over' || activeFilter === 'Villas HO') && !a.status?.toLowerCase().includes('handed over')) return false;
         if (activeFilter === 'Pending' && !a.status?.toLowerCase().includes('pending')) return false;
         if (searchQuery && !a.title?.toLowerCase().includes(searchQuery.toLowerCase())) return false;
         return true;
@@ -82,17 +84,30 @@ export function InteractiveCommunityMap({ report }) {
             </div>
 
             <div className="bg-white p-4 rounded-xl border border-slate-200 shadow-sm mb-4 flex flex-col sm:flex-row gap-4 justify-between items-center relative z-20">
-                <div className="flex flex-wrap gap-2">
-                    {['All', 'Upgrade Projects', 'Villas', 'Handed Over', 'In Progress', 'Completed'].map(f => (
-                        <button
-                            key={f}
-                            onClick={() => setActiveFilter(f)}
-                            className={`px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 ${activeFilter === f ? 'bg-slate-800 text-white' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}`}
-                        >
-                            {f === 'All' && <Layers className="w-3 h-3" />}
-                            {f}
-                        </button>
-                    ))}
+                <div className="flex flex-col gap-2">
+                    <div className="flex flex-wrap gap-2">
+                        {['All', 'Upgrade Projects', 'Villas HO'].map(f => (
+                            <button
+                                key={f}
+                                onClick={() => setActiveFilter(f)}
+                                className={`px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 ${activeFilter === f ? 'bg-slate-800 text-white shadow-sm' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}`}
+                            >
+                                {f === 'All' && <Layers className="w-3 h-3" />}
+                                {f}
+                            </button>
+                        ))}
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                        {['In Progress', 'Completed'].map(f => (
+                            <button
+                                key={f}
+                                onClick={() => setActiveFilter(f)}
+                                className={`px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 ${activeFilter === f ? 'bg-slate-800 text-white shadow-sm' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}`}
+                            >
+                                {f}
+                            </button>
+                        ))}
+                    </div>
                 </div>
                 <div className="relative max-w-xs w-full">
                     <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
