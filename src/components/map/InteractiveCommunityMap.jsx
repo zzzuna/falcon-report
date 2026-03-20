@@ -155,21 +155,21 @@ export function InteractiveCommunityMap({ report }) {
                 </div>
 
                 {/* Map Legend */}
-                <div className="md:absolute md:top-4 md:right-4 bg-white/95 md:backdrop-blur border-t md:border border-slate-200 p-4 md:p-3.5 md:rounded-lg md:shadow-md z-20 pointer-events-auto w-full md:w-auto relative grid grid-cols-1 gap-3 md:flex md:flex-col md:gap-2">
+                <div className="md:absolute md:top-4 md:right-4 bg-white/95 md:backdrop-blur border-t md:border border-slate-200 p-2.5 md:p-3 md:rounded-lg md:shadow-md z-20 pointer-events-auto w-full md:w-auto relative flex flex-col gap-2 md:gap-1.5">
                     
-                    <div className="flex flex-col sm:flex-row sm:items-center gap-1.5 sm:gap-4 md:flex-col md:items-start md:gap-1.5">
-                        <h5 className="text-[10px] font-black text-slate-400 uppercase tracking-widest shrink-0">Villa Status</h5>
-                        <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-[11px] font-bold text-slate-700">
+                    <div className="flex items-center sm:items-start flex-col sm:flex-row gap-0.5 sm:gap-3 md:flex-col md:gap-1">
+                        <h5 className="text-[11px] font-bold text-slate-400 uppercase tracking-widest shrink-0">Villa Status</h5>
+                        <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] font-bold text-slate-700">
                             <div className="flex items-center gap-1.5"><div className="w-3 h-3 bg-[#8bc34a] border border-[#689f38] rounded-sm opacity-90"></div>Handed Over</div>
                             <div className="flex items-center gap-1.5"><div className="w-3 h-3 bg-[#0288d1] border border-[#01579b] rounded-sm opacity-90"></div>Not Accepted</div>
                         </div>
                     </div>
 
-                    <div className="hidden md:block border-t border-slate-100 my-1"></div>
+                    <div className="hidden md:block border-t border-slate-100 my-0.5"></div>
 
-                    <div className="flex flex-col sm:flex-row sm:items-center gap-1.5 sm:gap-4 md:flex-col md:items-start md:gap-1.5">
-                        <h5 className="text-[10px] font-black text-slate-400 uppercase tracking-widest shrink-0">Projects</h5>
-                        <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-[11px] font-bold text-slate-700 md:grid md:grid-cols-2">
+                    <div className="flex items-center sm:items-start flex-col sm:flex-row gap-0.5 sm:gap-3 md:flex-col md:gap-1">
+                        <h5 className="text-[11px] font-bold text-slate-400 uppercase tracking-widest shrink-0">Projects</h5>
+                        <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] font-bold text-slate-700 md:grid md:grid-cols-2">
                             <div className="flex items-center gap-1.5"><div className="w-3 h-3 bg-emerald-500 rounded-full border border-white shadow-sm"></div>Completed</div>
                             <div className="flex items-center gap-1.5"><div className="w-3 h-3 bg-orange-500 rounded-full border border-white shadow-sm"></div>In Progress</div>
                             <div className="flex items-center gap-1.5"><div className="w-3 h-3 bg-blue-500 rounded-full border border-white shadow-sm"></div>Planned</div>
