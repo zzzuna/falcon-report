@@ -156,6 +156,16 @@ export function SingleReport({ isLatest }) {
                     </div>
                 </header>
 
+                {/* EXECUTIVE SUMMARY */}
+                <section className="mb-10 print:break-inside-avoid">
+                    <SectionHeading title="Executive Summary" />
+                    <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                        <p className="text-slate-800 font-medium leading-relaxed text-lg">
+                            {report.executive_summary}
+                        </p>
+                    </div>
+                </section>
+
                 {/* KPI STRIP */}
                 <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-3 mb-10 print:grid-cols-7 items-stretch">
                     <KPICard title="Total Offered" value={report.kpis.total_offered} subtitle="/ 240" total={240} valueColor="text-blue-600" caption="Total Offered / Total Number" />
@@ -170,14 +180,7 @@ export function SingleReport({ isLatest }) {
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-10">
                     {/* LEFT COLUMN: SUMMARIES */}
                     <div className="lg:col-span-2 space-y-10">
-                        <section className="print:break-inside-avoid">
-                            <SectionHeading title="Executive Summary" />
-                            <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
-                                <p className="text-slate-800 font-medium leading-relaxed text-lg">
-                                    {report.executive_summary}
-                                </p>
-                            </div>
-                        </section>
+                        {/* Executive Summary has been moved above the KPIs */}
 
                         <section className="print:break-inside-avoid">
                             <SectionHeading title="Key Concerns" />
