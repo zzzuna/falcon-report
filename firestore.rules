@@ -1,0 +1,45 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Check if the user is authenticated via Firebase Auth
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    // Check if the authenticated user exists in the "users" collection (meaning they are an authorized admin/editor)
+    function isAuthorized() {
+      return isAuthenticated() && exists(/databases/$(database)/documents/users/$(request.auth.uid));
+    }
+
+    // ----- USERS COLLECTION -----
+    // Only authorized system users can view user details. 
+    // Writing is disabled from the client to prevent role escalation.
+    match /users/{userId} {
+      allow read: if isAuthorized() || request.auth.uid == userId;
+      allow write: if false; 
+    }
+
+    // ----- REPORTS COLLECTION -----
+    match /reports/{reportId} {
+      // Public can read if the report is explicitly marked as published. Otherwise, only admins/editors.
+      allow read: if resource.data.isPublished == true || isAuthorized();
+      // Only authorized personnel can create, update, or delete reports.
+      allow write: if isAuthorized();
+    }
+
+    // ----- REPORT ITEMS COLLECTION -----
+    match /report_items/{itemId} {
+      // Cross-document read to check if the parent report is published.
+      allow read: if isAuthorized() || get(/databases/$(database)/documents/reports/$(resource.data.reportId)).data.isPublished == true;
+      allow write: if isAuthorized();
+    }
+
+    // ----- REPORT FILES COLLECTION -----
+    match /report_files/{fileId} {
+      allow read: if isAuthorized() || get(/databases/$(database)/documents/reports/$(resource.data.reportId)).data.isPublished == true;
+      allow write: if isAuthorized();
+    }
+  }
+}

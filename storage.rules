@@ -1,0 +1,20 @@
+rules_version = '2';
+
+service firebase.storage {
+  match /b/{bucket}/o {
+    
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    // Validating Firestore user record from Storage requires custom tokens or using the same minimal authenticated check rule.
+    // Assuming anyone authenticated with an account in the system is allowed to upload files.
+    
+    match /reports/{reportId}/{allPaths=**} {
+      // Anyone can download files
+      allow read: if true;
+      // Only authenticated back-office users can upload/modify files
+      allow write: if isAuthenticated();
+    }
+  }
+}

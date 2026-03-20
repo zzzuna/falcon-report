@@ -1,0 +1,75 @@
+@import "tailwindcss";
+
+@theme {
+  --color-falcon-blue: #0f172a;
+  --color-falcon-gold: #d4af37;
+  --color-falcon-gray: #f8fafc;
+}
+
+body {
+  @apply bg-slate-50 text-slate-900 antialiased;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* Custom Scrollbar for modern look */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Print specific styles */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 15mm 10mm;
+  }
+
+  body {
+    background: transparent !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color: black !important;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  * {
+    text-shadow: none !important;
+    box-shadow: none !important;
+  }
+
+  /* Force backgrounds for color coding in tables and badges */
+  .bg-white,
+  .bg-slate-50,
+  .bg-emerald-50,
+  .bg-rose-50,
+  .bg-amber-50,
+  .bg-emerald-100,
+  .bg-rose-100,
+  .bg-amber-100,
+  .bg-slate-100,
+  .bg-slate-400,
+  .bg-emerald-600,
+  .bg-emerald-500,
+  .bg-rose-600,
+  .bg-amber-600,
+  .bg-slate-900 {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}
