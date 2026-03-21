@@ -176,9 +176,9 @@ export function InteractiveCommunityMap({ report }) {
                     <div className="flex flex-col md:flex-row md:items-center gap-1 md:gap-3">
                         <div className="uppercase tracking-wider text-slate-500 text-[10px] font-black md:w-20 shrink-0">Villas</div>
                         <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
-                            <div className="flex items-center gap-1.5 text-[10px] font-bold text-slate-700 leading-none"><div className="w-3 h-3 bg-[#8bc34a] border border-[#689f38] rounded-sm opacity-90"></div>Handed Over</div>
-                            <div className="flex items-center gap-1.5 text-[10px] font-bold text-slate-700 leading-none"><div className="w-3 h-3 bg-[#0288d1] border border-[#01579b] rounded-sm opacity-90"></div>Not Accepted</div>
-                            <div className="flex items-center gap-1.5 text-[10px] font-bold text-slate-700 leading-none"><div className="w-3 h-3 bg-purple-500 border border-purple-700 rounded-sm opacity-90"></div>Occupied</div>
+                            <div className="flex items-center gap-1.5 text-[10px] font-bold text-slate-700 leading-none"><div className="w-3 h-3 bg-[#8bc34a] border border-[#689f38] rounded-sm"></div>Handed Over</div>
+                            <div className="flex items-center gap-1.5 text-[10px] font-bold text-slate-700 leading-none"><div className="w-3 h-3 bg-[#0288d1] border border-[#01579b] rounded-sm"></div>Not Accepted</div>
+                            <div className="flex items-center gap-1.5 text-[10px] font-bold text-slate-700 leading-none"><div className="w-3 h-3 bg-purple-500 border border-purple-700 rounded-sm"></div>Occupied</div>
                         </div>
                     </div>
 
