@@ -39,40 +39,39 @@ function AdminLayout() {
 
   const navItemClass = (path, exact = false) => {
     const isActive = exact ? location.pathname === path : location.pathname.startsWith(path);
-    return `flex items-center gap-3 px-4 py-3 rounded-xl font-bold transition-all ${isActive ? 'bg-amber-500 text-slate-900 shadow-md' : 'text-slate-400 hover:bg-slate-800 hover:text-white'}`;
+    return `flex items-center gap-2 px-3 py-1.5 text-sm rounded-lg font-bold transition-all ${isActive ? 'bg-amber-500 text-slate-900 shadow-md' : 'text-slate-400 hover:bg-slate-800 hover:text-white'}`;
   };
 
   return (
-    <div className="min-h-screen flex bg-slate-100 font-sans">
-      <aside className="w-64 bg-slate-900 flex flex-col shadow-2xl z-10 relative overflow-hidden">
-        {/* Background glow logic aesthetic */}
-        <div className="absolute top-0 right-0 w-32 h-32 bg-amber-500 rounded-full mix-blend-screen opacity-10 blur-3xl -mr-10 -mt-10 pointer-events-none"></div>
-
-        <div className="p-8">
-          <h2 className="text-2xl font-black text-white tracking-tight flex items-center gap-2">FI Portal</h2>
-          <p className="text-[10px] text-slate-500 mt-1 uppercase tracking-widest font-black">Admin Gateway</p>
-        </div>
-
-        <nav className="flex-1 px-4 space-y-2 mt-4 relative z-10">
-          <Link to="/admin" className={navItemClass('/admin', true)}><LayoutDashboard className="w-5 h-5" /> Dashboard</Link>
-          <Link to="/admin/reports/new" className={navItemClass('/admin/reports/new')}><FileText className="w-5 h-5" /> Draft Report</Link>
-          <Link to="/admin/media" className={navItemClass('/admin/media')}><ImageIcon className="w-5 h-5" /> Media Library</Link>
-          <Link to="/admin/archive" className={navItemClass('/admin/archive')}><ArchiveIcon className="w-5 h-5" /> Archive Vault</Link>
-        </nav>
-
-        <div className="p-4 border-t border-slate-800 relative z-10 space-y-2">
-          <Link to="/" className="w-full text-slate-400 hover:text-white transition flex items-center gap-3 px-4 py-2 text-sm font-bold"><ArrowLeft className="w-4 h-4" /> Public Viewer</Link>
-          <button onClick={handleLogout} className="w-full text-rose-400 hover:bg-rose-500/10 hover:text-rose-300 transition flex items-center gap-3 px-4 py-2 rounded text-sm font-bold"><LogOut className="w-4 h-4" /> Sign Out</button>
-        </div>
-      </aside>
-
-      <main className="flex-1 flex flex-col h-screen overflow-hidden">
-        <header className="bg-white px-8 py-3 border-b border-slate-200 flex justify-end items-center shadow-sm z-0">
-          <div className="flex items-center gap-3">
-            <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">Authorized</span>
-            <div className="w-8 h-8 rounded-full bg-slate-900 text-white font-bold flex items-center justify-center text-xs">A</div>
+    <div className="min-h-screen flex flex-col bg-slate-100 font-sans">
+      <header className="bg-slate-900 border-b border-slate-800 shadow-md flex items-center justify-between px-6 py-3 z-10 shrink-0">
+        <div className="flex items-center gap-6">
+          <div className="flex flex-col items-center justify-center">
+            <h2 className="text-xl font-black text-white tracking-tight leading-none">FI Portal</h2>
+            <p className="text-[8px] text-slate-400 mt-1 uppercase tracking-widest font-black leading-none">Admin Gateway</p>
           </div>
-        </header>
+          <nav className="hidden lg:flex items-center gap-2 ml-4 relative z-10">
+            <Link to="/admin" className={navItemClass('/admin', true)}><LayoutDashboard className="w-4 h-4" /> Dashboard</Link>
+            <Link to="/admin/reports/new" className={navItemClass('/admin/reports/new')}><FileText className="w-4 h-4" /> Draft Report</Link>
+            <Link to="/admin/media" className={navItemClass('/admin/media')}><ImageIcon className="w-4 h-4" /> Media Library</Link>
+            <Link to="/admin/archive" className={navItemClass('/admin/archive')}><ArchiveIcon className="w-4 h-4" /> Archive Vault</Link>
+          </nav>
+        </div>
+        
+        <div className="flex items-center gap-4">
+          <Link to="/" className="hidden sm:flex text-slate-400 hover:text-white transition items-center gap-1.5 text-xs font-bold"><ArrowLeft className="w-3.5 h-3.5" /> Public Viewer</Link>
+          <button onClick={handleLogout} className="text-rose-400 hover:bg-rose-500/10 hover:text-rose-300 transition flex items-center gap-1.5 px-2 py-1 rounded text-xs font-bold"><LogOut className="w-3.5 h-3.5" /> Sign Out</button>
+          
+          <div className="h-6 border-l border-slate-700 mx-1"></div>
+          
+          <div className="flex items-center gap-2">
+            <span className="hidden sm:inline-block text-[10px] font-bold text-slate-400 uppercase tracking-widest">Authorized</span>
+            <div className="w-8 h-8 rounded-full bg-slate-800 border border-slate-700 text-white font-bold flex items-center justify-center text-xs shadow-sm shadow-black/50">A</div>
+          </div>
+        </div>
+      </header>
+
+      <main className="flex-1 flex flex-col overflow-hidden relative">
         <div className="p-8 flex-1 overflow-auto bg-slate-100">
           <Outlet />
         </div>
