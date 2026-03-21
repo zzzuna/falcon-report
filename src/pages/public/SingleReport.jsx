@@ -23,6 +23,10 @@ function StatusTrafficLight({ status }) {
         colorClass = 'text-amber-500';
         Icon = Clock;
     }
+    else if (['planned'].includes(s)) {
+        colorClass = 'text-blue-500';
+        Icon = Calendar;
+    }
     else if (['pending', 'action required', 'pending approval'].includes(s)) {
         colorClass = 'text-rose-500';
         Icon = AlertCircle;
