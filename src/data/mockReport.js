@@ -1,6 +1,6 @@
 export const MOCK_REPORT = {
     id: 'weekly-17',
-    title: 'Falcon Island Weekly Handover Report',
+    title: '',
     date: 'March 18, 2026',
     prepared_by: 'Community & Property Management',
     status: 'published',
