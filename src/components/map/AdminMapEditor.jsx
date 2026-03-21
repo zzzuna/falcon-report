@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 
 const getVillaColor = (status) => {
     const s = (status || '').toLowerCase();
+    if (s.includes('occupied')) return 'rgba(168, 85, 247, 0.6)';
     if (s.includes('handed over') || s.includes('completed')) return 'rgba(139, 195, 74, 0.6)';
     if (s.includes('not accepted')) return 'rgba(2, 136, 209, 0.6)';
     return 'rgba(255, 255, 255, 0.4)';
@@ -361,6 +362,7 @@ export function AdminMapEditor({ mapSettings, mapPoints, mapAreas, upgrades, onC
                                     onChange={e => onChangeAreas(mapAreas.map(ma => ma.id === activeArea.id ? { ...ma, status: e.target.value } : ma))}
                                     className="w-full text-sm font-bold border-b border-slate-300 py-1.5 bg-transparent focus:border-slate-800 outline-none"
                                 >
+                                    <option value="occupied">Occupied (Purple)</option>
                                     <option value="handed over">Handed Over (Green)</option>
                                     <option value="not accepted">Not Accepted (Blue)</option>
                                     <option value="pending">Pending</option>

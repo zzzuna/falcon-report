@@ -3,6 +3,7 @@ import { Search, Map as MapIcon, Layers, Filter, Maximize2, X, Info, MapPin } fr
 
 const getVillaColor = (status) => {
     const s = (status || '').toLowerCase();
+    if (s.includes('occupied')) return 'rgba(168, 85, 247, 0.6)'; // Purple (#a855f7)
     if (s.includes('handed over') || s.includes('completed')) return 'rgba(139, 195, 74, 0.6)'; // Green (#8bc34a)
     if (s.includes('not accepted')) return 'rgba(2, 136, 209, 0.6)'; // Blue (#0288d1)
     if (s.includes('pending') || s.includes('scheduled')) return 'rgba(148, 163, 184, 0.6)'; // Slate
@@ -170,13 +171,14 @@ export function InteractiveCommunityMap({ report }) {
                 </div>
 
                 {/* Map Legend */}
-                <div className="md:absolute md:top-4 md:right-4 bg-white/95 md:backdrop-blur border-t md:border border-slate-200 p-2 md:p-3 md:rounded-lg md:shadow-md z-20 pointer-events-auto w-full md:w-auto relative flex flex-col gap-1.5 md:gap-2 text-[11px] font-bold text-slate-700">
+                <div className="md:absolute md:top-4 md:right-4 bg-white/95 md:backdrop-blur border-t md:border border-slate-200 p-2 md:p-3 md:rounded-lg md:shadow-md z-20 pointer-events-auto w-full md:w-auto relative flex flex-col gap-1.5 md:gap-2 text-[9px] font-bold text-slate-700">
                     
                     <div className="flex flex-col md:flex-row md:items-center gap-1 md:gap-3">
                         <div className="uppercase tracking-wider text-slate-500 md:w-20 shrink-0">Villas</div>
                         <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
                             <div className="flex items-center gap-1.5"><div className="w-3 h-3 bg-[#8bc34a] border border-[#689f38] rounded-sm opacity-90"></div>Handed Over</div>
                             <div className="flex items-center gap-1.5"><div className="w-3 h-3 bg-[#0288d1] border border-[#01579b] rounded-sm opacity-90"></div>Not Accepted</div>
+                            <div className="flex items-center gap-1.5"><div className="w-3 h-3 bg-purple-500 border border-purple-700 rounded-sm opacity-90"></div>Occupied</div>
                         </div>
                     </div>
 
