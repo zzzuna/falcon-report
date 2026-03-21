@@ -33,8 +33,7 @@ export function Login() {
                         <div className="w-16 h-16 bg-gradient-to-br from-amber-400 to-orange-500 rounded-2xl mx-auto mb-6 flex items-center justify-center shadow-lg transform rotate-3">
                             <span className="text-2xl font-black text-white transform -rotate-3">FI</span>
                         </div>
-                        <h2 className="text-3xl font-bold text-white tracking-tight">Admin Portal</h2>
-                        <p className="text-slate-400 mt-2 text-sm font-medium">Falcon Island Weekly Report</p>
+                        <h2 className="text-3xl font-bold text-white tracking-tight">Falcon Island Portal</h2>
                     </div>
 
                     {error && <div className="bg-rose-500/10 border border-rose-500/50 text-rose-400 p-3 rounded-lg text-sm mb-6 text-center">{error}</div>}
