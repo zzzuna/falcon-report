@@ -84,12 +84,10 @@ function App() {
   return (
     <AuthProvider>
       <Routes>
-        <Route element={<ProtectedRoute />}>
-          <Route element={<PublicLayout />}>
-            <Route path="/" element={<Home />} />
-            <Route path="/reports" element={<PublicArchive />} />
-            <Route path="/reports/:id" element={<SingleReport />} />
-          </Route>
+        <Route element={<PublicLayout />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/reports" element={<PublicArchive />} />
+          <Route path="/reports/:id" element={<SingleReport />} />
         </Route>
 
         <Route path="/admin/login" element={<Login />} />

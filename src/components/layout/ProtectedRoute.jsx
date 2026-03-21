@@ -9,7 +9,7 @@ export function ProtectedRoute({ requireAdmin }) {
     }
 
     // Role-Based Access Control logic
-    const ADMIN_EMAILS = ['zunic.vladimir@gmail.com', 'admin@falconisland.com'];
+    const ADMIN_EMAILS = ['zunic.vladimir@gmail.com'];
 
     if (requireAdmin && currentUser.email && !ADMIN_EMAILS.includes(currentUser.email.toLowerCase())) {
         // Standard user trying to sneak into the backend admin panel
