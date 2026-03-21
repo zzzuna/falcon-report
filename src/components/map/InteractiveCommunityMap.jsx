@@ -50,11 +50,15 @@ export function InteractiveCommunityMap({ report }) {
     const enhancedPoints = points.map(p => {
         const linked = upgrades.find(u => String(u.id) === String(p.linkedItemId));
         return linked ? {
-            ...linked,
             ...p,
-            title: p.title || linked.title, // Map Inspector node overrides Database root properties
-            id: p.id // CRITICAL: Preserves unique map node UUID to prevent React DOM rendering collisions
-        } : p;
+            ...linked,
+            title: linked.title || p.title, // Live Database truth overrides map inspector property
+            status: linked.status || p.status, // Live Database status overrides stale node status 
+            id: p.id, // CRITICAL: Preserves unique map node UUID to prevent React DOM rendering collisions
+            xPercent: p.xPercent,
+            yPercent: p.yPercent,
+            type: 'project'
+        } : { ...p, type: 'project' };
     });
 
     const filteredPoints = enhancedPoints.filter(p => {
