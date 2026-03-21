@@ -52,7 +52,7 @@ function AdminLayout() {
           </div>
           <nav className="hidden lg:flex items-center gap-2 ml-4 relative z-10">
             <Link to="/admin" className={navItemClass('/admin', true)}><LayoutDashboard className="w-4 h-4" /> Dashboard</Link>
-            <Link to="/admin/reports/new" className={navItemClass('/admin/reports/new')}><FileText className="w-4 h-4" /> Draft Report</Link>
+            <Link to="/admin/reports/new" className={navItemClass('/admin/reports/new')}><FileText className="w-4 h-4" /> Active Report</Link>
             <Link to="/admin/media" className={navItemClass('/admin/media')}><ImageIcon className="w-4 h-4" /> Media Library</Link>
             <Link to="/admin/archive" className={navItemClass('/admin/archive')}><ArchiveIcon className="w-4 h-4" /> Archive Vault</Link>
           </nav>

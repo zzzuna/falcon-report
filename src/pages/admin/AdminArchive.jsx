@@ -2,17 +2,20 @@ import { FileText, Archive as ArchiveIcon } from 'lucide-react';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
 
 const INITIAL_REPORTS = [
-    { id: '1', title: 'Week 17 Draft', date: 'April 01, 2026', status: 'draft' },
+    { id: '1', title: 'Week 17 Active', date: 'April 01, 2026', status: 'Active' },
     { id: 'weekly-16', title: 'Week 16 Project Update', date: 'March 18, 2026', status: 'published' },
     { id: 'weekly-15', title: 'Week 15 Project Update', date: 'March 11, 2026', status: 'published' },
 ];
 
 export function AdminArchive() {
     const [reports, setReports] = useLocalStorage('falcon-reports', INITIAL_REPORTS);
+
     const archivedReports = reports.filter(r => r.status === 'archived');
 
     const handleRestore = (id) => {
-        setReports(reports.map(r => r.id === id ? { ...r, status: 'draft' } : r));
+        if (window.confirm("Restore this report to Active state?")) {
+            setReports(reports.map(r => r.id === id ? { ...r, status: 'Active' } : r));
+        };
     };
 
     return (

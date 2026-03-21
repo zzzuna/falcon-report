@@ -70,7 +70,7 @@ export function AdminReportEditor() {
         }
     }, [isLoading, dbReport, formData]);
 
-    const getSerializedPayload = (publishStatus = 'Draft') => ({
+    const getSerializedPayload = (publishStatus = 'Active') => ({
         id: 'weekly-17',
         title: formData.title,
         date: formData.date,
@@ -110,12 +110,12 @@ export function AdminReportEditor() {
     // Real-time active autosync pipeline
     useEffect(() => {
         if (!isLoading && formData) {
-            updateDbReport(getSerializedPayload('Draft'));
+            updateDbReport(getSerializedPayload('Active'));
         }
     }, [formData]);
 
-    const handleSaveDraft = () => {
-        alert('Draft saved locally & synced to Database Viewer!');
+    const handleSaveActive = () => {
+        alert('Active state saved locally & synced to Database Viewer!');
     };
 
     const handlePublish = () => {
@@ -174,8 +174,8 @@ export function AdminReportEditor() {
                     <button onClick={() => setIsComparing(!isComparing)} className={`px-4 py-2 rounded-xl font-bold transition flex items-center gap-2 ${isComparing ? 'bg-amber-100 text-amber-800 border border-amber-200 shadow-sm' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'}`}>
                         Compare Prev
                     </button>
-                    <button onClick={handleSaveDraft} className="px-5 py-2.5 bg-slate-100 text-slate-700 hover:bg-slate-200 rounded-xl font-bold transition flex items-center gap-2">
-                        <Save className="w-4 h-4" /> Save Draft
+                    <button onClick={handleSaveActive} className="px-5 py-2.5 bg-slate-100 text-slate-700 hover:bg-slate-200 rounded-xl font-bold transition flex items-center gap-2">
+                        <Save className="w-4 h-4" /> Save Active
                     </button>
                     <button onClick={handlePublish} disabled={isPublishing} className="px-5 py-2.5 bg-emerald-600 text-white hover:bg-emerald-700 rounded-xl font-bold transition flex items-center gap-2 disabled:opacity-50">
                         <Send className="w-4 h-4" /> {isPublishing ? 'Publishing...' : 'Publish'}

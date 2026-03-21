@@ -4,13 +4,13 @@ import { Plus, Edit2, Copy, FileText, CheckCircle2, Archive as ArchiveIcon, Glob
 import { useLocalStorage } from '../../hooks/useLocalStorage';
 
 const INITIAL_REPORTS = [
-    { id: '1', title: 'Week 17 Draft', date: 'April 01, 2026', status: 'draft' },
+    { id: '1', title: 'Week 17 Active', date: 'April 01, 2026', status: 'Active' },
     { id: 'weekly-16', title: 'Week 16 Project Update', date: 'March 18, 2026', status: 'published' },
     { id: 'weekly-15', title: 'Week 15 Project Update', date: 'March 11, 2026', status: 'published' },
 ];
 
 function StatusBadge({ status }) {
-    if (status === 'draft') return <span className="bg-amber-100 text-amber-800 text-xs px-2.5 py-1 rounded-full font-bold border border-amber-200 flex items-center gap-1 w-max"><Clock className="w-3 h-3" /> Draft</span>;
+    if (status === 'Active' || status === 'draft') return <span className="bg-emerald-100 text-emerald-800 text-xs px-2.5 py-1 rounded-full font-bold border border-emerald-200 flex items-center gap-1 w-max"><Clock className="w-3 h-3" /> Active</span>;
     if (status === 'published') return <span className="bg-emerald-100 text-emerald-800 text-xs px-2.5 py-1 rounded-full font-bold border border-emerald-200 flex items-center gap-1 w-max"><Globe className="w-3 h-3" /> Published</span>;
     if (status === 'archived') return <span className="bg-slate-200 text-slate-700 text-xs px-2.5 py-1 rounded-full font-bold border border-slate-300 flex items-center gap-1 w-max"><ArchiveIcon className="w-3 h-3" /> Archived</span>;
     return null;
@@ -39,7 +39,7 @@ export function Dashboard() {
             ...reportToCopy,
             id: Date.now().toString(),
             title: duplicateModal.title,
-            status: 'draft',
+            status: 'Active',
             date: duplicateModal.date
         };
         setReports([newReport, ...reports]);
@@ -51,7 +51,7 @@ export function Dashboard() {
     };
 
     const handleDelete = (id) => {
-        if (window.confirm("Are you sure you want to delete this draft?")) {
+        if (window.confirm("Are you sure you want to delete this active report?")) {
             setReports(reports.filter(r => r.id !== id));
         }
     };
@@ -113,14 +113,14 @@ export function Dashboard() {
                                                 <Copy className="w-4 h-4" />
                                             </button>
 
-                                            {report.status === 'draft' && (
+                                            {(report.status === 'draft' || report.status === 'Active') && (
                                                 <button onClick={() => handleChangeStatus(report.id, 'published')} className="p-2 text-slate-400 hover:text-emerald-600 hover:bg-emerald-50 rounded-lg transition" title="Publish">
                                                     <CheckCircle2 className="w-4 h-4" />
                                                 </button>
                                             )}
 
                                             {report.status === 'published' && (
-                                                <button onClick={() => handleChangeStatus(report.id, 'draft')} className="p-2 text-slate-400 hover:text-amber-600 hover:bg-amber-50 rounded-lg transition" title="Unpublish to Draft">
+                                                <button onClick={() => handleChangeStatus(report.id, 'Active')} className="p-2 text-slate-400 hover:text-amber-600 hover:bg-amber-50 rounded-lg transition" title="Unpublish to Active">
                                                     <Lock className="w-4 h-4" />
                                                 </button>
                                             )}
@@ -129,7 +129,7 @@ export function Dashboard() {
                                                 <ArchiveIcon className="w-4 h-4" />
                                             </button>
 
-                                            {report.status === 'draft' && (
+                                            {(report.status === 'draft' || report.status === 'Active') && (
                                                 <button onClick={() => handleDelete(report.id)} className="p-2 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition" title="Delete permanently">
                                                     <Trash2 className="w-4 h-4" />
                                                 </button>
