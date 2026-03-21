@@ -4,8 +4,7 @@ import { PurchaseOrderTable } from '../../components/tables/PurchaseOrderTable';
 import { InteractiveCommunityMap } from '../../components/map/InteractiveCommunityMap';
 import { OpportunitiesSection } from '../../components/sections/OpportunitiesSection';
 import { ArrowLeft, Printer, Download, Calendar, User, CheckCircle2, AlertCircle, Clock, Info, Paperclip, FileText, Image as ImageIcon } from 'lucide-react';
-import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid, Legend, Cell } from 'recharts';
-
+import { BarChart, Bar, LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid, Legend, Cell } from 'recharts';
 import { useDatabaseReport } from '../../hooks/useDatabaseReport';
 import { MOCK_REPORT } from '../../data/mockReport';
 
@@ -320,6 +319,35 @@ export function SingleReport({ isLatest }) {
                             <img src="/villa-south-hi-res.png" alt="South Villa Numbers" className="w-full h-auto object-contain cursor-zoom-in hover:scale-150 transition-transform duration-700 origin-center" />
                         </div>
                     )}
+                </section>
+
+                {/* OCCUPANCY TREND KPI */}
+                <section className="mb-6 print:break-inside-avoid">
+                    <SectionHeading title="Occupancy & Handover Trend" />
+                    <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                        <div className="mb-6 flex justify-between items-end">
+                            <div>
+                                <h3 className="text-sm font-bold text-slate-900 tracking-tight">Cumulative Growth Tracking</h3>
+                                <p className="text-xs text-slate-500 font-medium">Handed Over vs Occupied Units</p>
+                            </div>
+                            <div className="flex items-center gap-4 text-[10px] font-black uppercase tracking-widest">
+                                <span className="flex items-center gap-1.5"><div className="w-2 h-2 rounded-full bg-[#8bc34a]"></div>HO Units</span>
+                                <span className="flex items-center gap-1.5"><div className="w-2 h-2 rounded-full bg-purple-500"></div>Occupied</span>
+                            </div>
+                        </div>
+                        <div className="h-64 w-full">
+                            <ResponsiveContainer width="100%" height="100%">
+                                <LineChart data={report.occupancy_trend || MOCK_REPORT.occupancy_trend} margin={{ top: 5, right: 10, left: -20, bottom: 5 }}>
+                                    <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
+                                    <XAxis dataKey="month" tick={{ fill: '#64748b', fontSize: 11, fontWeight: 800, dy: 10 }} axisLine={false} tickLine={false} />
+                                    <YAxis tick={{ fill: '#94a3b8', fontSize: 10, fontWeight: 600 }} axisLine={false} tickLine={false} />
+                                    <Tooltip cursor={{ stroke: '#e2e8f0', strokeWidth: 2, strokeDasharray: '4 4' }} contentStyle={{ borderRadius: '8px', border: '1px solid #e2e8f0', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)', fontSize: '12px', fontWeight: 'bold' }} />
+                                    <Line type="monotone" dataKey="HO" name="HO Units" stroke="#8bc34a" strokeWidth={3} dot={{ r: 4, strokeWidth: 2, fill: '#fff' }} activeDot={{ r: 6 }} />
+                                    <Line type="monotone" dataKey="Occupied" name="Occupied" stroke="#a855f7" strokeWidth={3} dot={{ r: 4, strokeWidth: 2, fill: '#fff' }} activeDot={{ r: 6 }} />
+                                </LineChart>
+                            </ResponsiveContainer>
+                        </div>
+                    </div>
                 </section>
 
                 <PurchaseOrderTable items={report.purchase_orders} />

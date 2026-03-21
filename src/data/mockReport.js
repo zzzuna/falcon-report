@@ -29,6 +29,14 @@ export const MOCK_REPORT = {
     finance_chart_data: [
         { name: 'Revenue Tracking (AED)', potential: 14600000, realized: 7040000 },
     ],
+    occupancy_trend: [
+        { month: 'Jan', HO: 15, Occupied: 2 },
+        { month: 'Feb', HO: 28, Occupied: 12 },
+        { month: 'Mar', HO: 47, Occupied: 25 },
+        { month: 'Apr', HO: 85, Occupied: 40 },
+        { month: 'May', HO: 130, Occupied: 85 },
+        { month: 'Jun', HO: 159, Occupied: 140 }
+    ],
     upgrade_projects: [
         { id: 1, title: 'Beach lights', status: 'In Progress', owner: 'FM Team', date: 'TBD', cost: 45000 },
         { id: 2, title: 'Barbecue', status: 'Pending', owner: 'FM Team', date: 'TBD', cost: 30000 },
