@@ -73,7 +73,7 @@ export function Login() {
                     </form>
 
                     <div className="mt-8 text-center">
-                        <a href="/" className="text-sm text-slate-500 hover:text-white transition font-medium">&larr; Back to Public Viewer</a>
+                        <span className="text-sm text-slate-600 font-medium">Restricted Access Portal</span>
                     </div>
                 </div>
             </div>
