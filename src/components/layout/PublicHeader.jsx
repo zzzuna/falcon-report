@@ -10,7 +10,7 @@ export function PublicHeader() {
                 <div className="flex items-center gap-3">
                     <div className="w-8 h-8 sm:w-10 sm:h-10 bg-slate-900 rounded flex items-center justify-center text-white font-black text-lg sm:text-xl shrink-0">FI</div>
                     <div>
-                        <h1 className="text-xl font-black text-slate-900 tracking-tight leading-tight">
+                        <h1 className="text-xl font-black text-white tracking-tight leading-tight">
                             Falcon Island
                         </h1>
                     </div>
