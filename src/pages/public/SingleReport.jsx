@@ -337,31 +337,41 @@ export function SingleReport({ isLatest }) {
                     )}
                 </section>
 
-                {/* OCCUPANCY TREND KPI */}
+                {/* OCCUPANCY TRACKING BAR */}
                 <section className="mb-6 print:break-inside-avoid">
-                    <SectionHeading title="Occupancy & Handover Trend" />
-                    <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
-                        <div className="mb-6 flex justify-between items-end">
+                    <SectionHeading title="Occupancy & Handover Status" />
+                    <div className="bg-white p-6 sm:p-8 rounded-xl border border-slate-200 shadow-sm flex flex-col md:flex-row items-center gap-6 sm:gap-10">
+                        
+                        {/* Stats Headers */}
+                        <div className="flex gap-8 w-full md:w-auto shrink-0 justify-between md:justify-start">
                             <div>
-                                <h3 className="text-sm font-bold text-slate-900 tracking-tight">Cumulative Growth Tracking</h3>
-                                <p className="text-xs text-slate-500 font-medium">Handed Over vs Occupied Units</p>
+                                <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1 shadow-sm">Total HO</p>
+                                <p className="text-3xl sm:text-4xl font-black text-[#8bc34a] tracking-tighter leading-none">{finalHO}</p>
                             </div>
-                            <div className="flex items-center gap-4 text-[10px] font-black uppercase tracking-widest">
-                                <span className="flex items-center gap-1.5"><div className="w-2 h-2 rounded-full bg-[#8bc34a]"></div>HO Units</span>
-                                <span className="flex items-center gap-1.5"><div className="w-2 h-2 rounded-full bg-purple-500"></div>Occupied</span>
+                            <div className="border-l-2 border-slate-100 pl-8">
+                                <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1 shadow-sm">Occupied</p>
+                                <p className="text-3xl sm:text-4xl font-black text-purple-500 tracking-tighter leading-none">{finalOccupied}</p>
                             </div>
                         </div>
-                        <div className="h-64 w-full">
-                            <ResponsiveContainer width="100%" height="100%">
-                                <LineChart data={dynamicOccupancyTrend} margin={{ top: 5, right: 10, left: -20, bottom: 5 }}>
-                                    <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
-                                    <XAxis dataKey="month" tick={{ fill: '#64748b', fontSize: 11, fontWeight: 800, dy: 10 }} axisLine={false} tickLine={false} />
-                                    <YAxis tick={{ fill: '#94a3b8', fontSize: 10, fontWeight: 600 }} axisLine={false} tickLine={false} />
-                                    <Tooltip cursor={{ stroke: '#e2e8f0', strokeWidth: 2, strokeDasharray: '4 4' }} contentStyle={{ borderRadius: '8px', border: '1px solid #e2e8f0', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)', fontSize: '12px', fontWeight: 'bold' }} />
-                                    <Line type="monotone" dataKey="HO" name="HO Units" stroke="#8bc34a" strokeWidth={3} dot={{ r: 4, strokeWidth: 2, fill: '#fff' }} activeDot={{ r: 6 }} />
-                                    <Line type="monotone" dataKey="Occupied" name="Occupied" stroke="#a855f7" strokeWidth={3} dot={{ r: 4, strokeWidth: 2, fill: '#fff' }} activeDot={{ r: 6 }} />
-                                </LineChart>
-                            </ResponsiveContainer>
+
+                        {/* Overlapping Progress Bar */}
+                        <div className="flex-1 w-full mt-2 md:mt-0">
+                            <div className="flex justify-between items-end mb-2.5">
+                                <span className="text-xs font-bold text-slate-500 uppercase tracking-widest">Pipeline Progression</span>
+                                <span className="text-[10px] font-black text-slate-400 uppercase">Target: {report.kpis.total_offered}</span>
+                            </div>
+                            <div className="h-4 sm:h-5 w-full bg-slate-100 rounded-full overflow-hidden relative shadow-inner">
+                                {/* Empty Base */}
+                                <div className="absolute inset-0 bg-slate-100"></div>
+                                {/* Green Bar -> Handed Over */}
+                                <div className="absolute top-0 left-0 h-full bg-[#8bc34a] transition-all duration-1000 ease-out z-10" style={{ width: `${Math.min(100, (finalHO / Math.max(1, report.kpis.total_offered)) * 100)}%` }}></div>
+                                {/* Purple Overlay -> Occupied */}
+                                <div className="absolute top-0 left-0 h-full bg-purple-500 transition-all duration-1000 ease-out z-20" style={{ width: `${Math.min(100, (finalOccupied / Math.max(1, report.kpis.total_offered)) * 100)}%` }}></div>
+                            </div>
+                            <div className="flex justify-between mt-2.5">
+                                <span className="text-[10px] font-bold text-[#8bc34a] tracking-wide">{Math.round((finalHO / Math.max(1, report.kpis.total_offered)) * 100)}% of Total</span>
+                                <span className="text-[10px] font-bold text-purple-500 tracking-wide">{Math.round((finalOccupied / Math.max(1, finalHO)) * 100)}% of HO is Occupied</span>
+                            </div>
                         </div>
                     </div>
                 </section>
