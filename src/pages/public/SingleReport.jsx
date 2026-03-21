@@ -167,14 +167,13 @@ export function SingleReport({ isLatest }) {
                 </section>
 
                 {/* KPI STRIP */}
-                <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-3 mb-10 print:grid-cols-7 items-stretch">
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 mb-10 print:grid-cols-6 items-stretch">
                     <KPICard title="Total Offered" value={report.kpis.total_offered} subtitle="/ 240" total={240} valueColor="text-blue-600" caption="Total Offered / Total Number" />
                     <KPICard title="Villas HO" value={report.kpis.villas_handed_over} subtitle={`/ ${report.kpis.total_offered}`} total={report.kpis.total_offered} valueColor="text-emerald-500" caption="Villas HO / Total Offered" />
                     <KPICard title="Letters Sent" value={report.kpis.letters_dispatched} subtitle={`/ ${report.kpis.total_offered}`} total={report.kpis.total_offered} valueColor="text-indigo-600" caption="Letters Sent / Total Offered" />
                     <KPICard title="Paid SOA's" value={report.kpis.paid_soas} subtitle={`/ ${report.kpis.letters_dispatched}`} total={report.kpis.letters_dispatched} valueColor="text-emerald-700" caption="Paid SOA's / Letters Sent" />
                     <KPICard title="Didn't Sign" value={report.kpis.owners_did_not_sign} subtitle={`/ ${report.kpis.paid_soas}`} total={report.kpis.paid_soas} valueColor="text-amber-500" caption="Didn't Sign / Paid SOA's" />
                     <KPICard title="No Shows" value={report.kpis.owners_did_not_show} subtitle={`/ ${report.kpis.paid_soas}`} total={report.kpis.paid_soas} valueColor="text-rose-500" caption="No Shows / Paid SOA's" />
-                    <KPICard title="Portfolio Potential" value={formatAED(report.finance.potential)} valueColor="text-slate-900" caption="Maximum Captured Value" />
                 </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-10">
