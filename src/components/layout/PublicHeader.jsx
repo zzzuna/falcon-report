@@ -40,11 +40,6 @@ export function PublicHeader() {
                             <span className="sm:hidden">Admin</span>
                         </Link>
                     )}
-                    {(currentUser && !isAdmin) && (
-                        <span className="hidden md:inline text-xs text-slate-400 font-medium">
-                            {currentUser.email}
-                        </span>
-                    )}
                     {currentUser && (
                         <button onClick={handleLogout} className="hover:text-rose-600 transition-colors uppercase tracking-wider flex items-center gap-1.5">
                             <span className="hidden sm:inline">Logout</span>
