@@ -171,26 +171,26 @@ export function InteractiveCommunityMap({ report }) {
                 </div>
 
                 {/* Map Legend */}
-                <div className="md:absolute md:top-4 md:right-4 bg-white/95 md:backdrop-blur border-t md:border border-slate-200 p-2 md:p-3 md:rounded-lg md:shadow-md z-20 pointer-events-auto w-full md:w-auto relative flex flex-col gap-1.5 md:gap-2 text-[9px] font-bold text-slate-700">
+                <div className="md:absolute md:top-4 md:right-4 bg-white/95 md:backdrop-blur border-t md:border border-slate-200 p-2 md:p-3 md:rounded-lg md:shadow-md z-20 pointer-events-auto w-full md:w-auto relative flex flex-col gap-1.5 md:gap-2">
                     
                     <div className="flex flex-col md:flex-row md:items-center gap-1 md:gap-3">
-                        <div className="uppercase tracking-wider text-slate-500 md:w-20 shrink-0">Villas</div>
+                        <div className="uppercase tracking-wider text-slate-500 text-[10px] font-black md:w-20 shrink-0">Villas</div>
                         <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
-                            <div className="flex items-center gap-1.5"><div className="w-3 h-3 bg-[#8bc34a] border border-[#689f38] rounded-sm opacity-90"></div>Handed Over</div>
-                            <div className="flex items-center gap-1.5"><div className="w-3 h-3 bg-[#0288d1] border border-[#01579b] rounded-sm opacity-90"></div>Not Accepted</div>
-                            <div className="flex items-center gap-1.5"><div className="w-3 h-3 bg-purple-500 border border-purple-700 rounded-sm opacity-90"></div>Occupied</div>
+                            <div className="flex items-center gap-1.5 text-[10px] font-bold text-slate-700 leading-none"><div className="w-3 h-3 bg-[#8bc34a] border border-[#689f38] rounded-sm opacity-90"></div>Handed Over</div>
+                            <div className="flex items-center gap-1.5 text-[10px] font-bold text-slate-700 leading-none"><div className="w-3 h-3 bg-[#0288d1] border border-[#01579b] rounded-sm opacity-90"></div>Not Accepted</div>
+                            <div className="flex items-center gap-1.5 text-[10px] font-bold text-slate-700 leading-none"><div className="w-3 h-3 bg-purple-500 border border-purple-700 rounded-sm opacity-90"></div>Occupied</div>
                         </div>
                     </div>
 
                     <div className="hidden md:block border-t border-slate-100 my-0"></div>
 
                     <div className="flex flex-col md:flex-row md:items-center gap-1 md:gap-3">
-                        <div className="uppercase tracking-wider text-slate-500 md:w-20 shrink-0">Projects</div>
+                        <div className="uppercase tracking-wider text-slate-500 text-[10px] font-black md:w-20 shrink-0">Projects</div>
                         <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
-                            <div className="flex items-center gap-1.5"><div className="w-3 h-3 bg-emerald-500 rounded-full border border-white shadow-sm"></div>Completed</div>
-                            <div className="flex items-center gap-1.5"><div className="w-3 h-3 bg-orange-500 rounded-full border border-white shadow-sm"></div>In Progress</div>
-                            <div className="flex items-center gap-1.5"><div className="w-3 h-3 bg-blue-500 rounded-full border border-white shadow-sm"></div>Planned</div>
-                            <div className="flex items-center gap-1.5"><div className="w-3 h-3 bg-rose-500 rounded-full border border-white shadow-sm"></div>Cancelled</div>
+                            <div className="flex items-center gap-1.5 text-[10px] font-bold text-slate-700 leading-none"><div className="w-3 h-3 bg-emerald-500 rounded-full border border-white shadow-sm"></div>Completed</div>
+                            <div className="flex items-center gap-1.5 text-[10px] font-bold text-slate-700 leading-none"><div className="w-3 h-3 bg-orange-500 rounded-full border border-white shadow-sm"></div>In Progress</div>
+                            <div className="flex items-center gap-1.5 text-[10px] font-bold text-slate-700 leading-none"><div className="w-3 h-3 bg-blue-500 rounded-full border border-white shadow-sm"></div>Planned</div>
+                            <div className="flex items-center gap-1.5 text-[10px] font-bold text-slate-700 leading-none"><div className="w-3 h-3 bg-rose-500 rounded-full border border-white shadow-sm"></div>Cancelled</div>
                         </div>
                     </div>
 
