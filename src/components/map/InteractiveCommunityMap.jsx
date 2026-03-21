@@ -267,11 +267,11 @@ export function InteractiveCommunityMap({ report }) {
                             </>
                         )}
 
-                        {(selectedNode.notes || selectedNode.description) && (
+                        {(selectedNode.notes || selectedNode.description || selectedNode.comments) && (
                             <div>
                                 <label className="text-xs font-bold text-slate-400 uppercase tracking-wider block mb-2">Notes & Context</label>
                                 <p className="text-sm font-medium text-slate-600 leading-relaxed p-4 bg-slate-50 rounded-lg border border-slate-100">
-                                    {selectedNode.notes || selectedNode.description}
+                                    {selectedNode.notes || selectedNode.description || selectedNode.comments}
                                 </p>
                             </div>
                         )}
