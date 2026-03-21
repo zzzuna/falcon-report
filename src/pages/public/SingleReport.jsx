@@ -165,7 +165,7 @@ export function SingleReport({ isLatest }) {
                             <span className="flex items-center gap-1.5"><User className="w-4 h-4 text-slate-400" /> Prepared by: {report.prepared_by}</span>
                             <span className="text-slate-300">|</span>
                             <span className="bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded text-xs tracking-wide uppercase border border-emerald-200">
-                                Status: {report.status === 'draft' ? 'Active' : report.status}
+                                Status: {(report.status || '').toLowerCase() === 'draft' ? 'Active' : report.status}
                             </span>
                         </div>
                     </div>
