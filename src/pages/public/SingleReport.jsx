@@ -346,11 +346,11 @@ export function SingleReport({ isLatest }) {
                         <div className="flex gap-8 w-full md:w-auto shrink-0 justify-between md:justify-start">
                             <div>
                                 <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1 shadow-sm">Total HO</p>
-                                <p className="text-3xl sm:text-4xl font-black text-[#8bc34a] tracking-tighter leading-none">{finalHO}</p>
+                                <p className="text-2xl font-black text-[#8bc34a] tracking-tighter leading-none">{finalHO}</p>
                             </div>
-                            <div className="border-l-2 border-slate-100 pl-8">
+                            <div className="border-l-2 border-slate-100 pl-6 sm:pl-8">
                                 <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1 shadow-sm">Occupied</p>
-                                <p className="text-3xl sm:text-4xl font-black text-purple-500 tracking-tighter leading-none">{finalOccupied}</p>
+                                <p className="text-2xl font-black text-purple-500 tracking-tighter leading-none">{finalOccupied}</p>
                             </div>
                         </div>
 
