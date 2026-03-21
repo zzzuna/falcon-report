@@ -275,11 +275,17 @@ export function AdminMapEditor({ mapSettings, mapPoints, mapAreas, upgrades, onC
                             </span>
                             <div className="space-y-4">
                                 <div>
-                                    <label className="text-[10px] font-black uppercase text-slate-500">Node Title / Override</label>
+                                    <label className="text-[10px] font-black uppercase text-slate-500">Project Title</label>
                                     <input
                                         type="text"
-                                        value={activePoint.title || ''}
-                                        onChange={e => onChangePoints(mapPoints.map(mp => mp.id === activePoint.id ? { ...mp, title: e.target.value } : mp))}
+                                        value={activeLinked ? activeLinked.title : (activePoint.title || '')}
+                                        onChange={(e) => {
+                                            const val = e.target.value;
+                                            onChangePoints(mapPoints.map(mp => mp.id === activePoint.id ? { ...mp, title: val } : mp));
+                                            if (activeLinked && onChangeUpgrades) {
+                                                onChangeUpgrades(upgrades.map(u => String(u.id) === String(activeLinked.id) ? { ...u, title: val } : u));
+                                            }
+                                        }}
                                         className="w-full text-sm font-bold border-b border-slate-300 py-1 bg-transparent focus:border-slate-800 outline-none"
                                     />
                                 </div>
