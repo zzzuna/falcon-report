@@ -153,14 +153,14 @@ export function AdminReportEditor() {
     );
 
     return (
-        <div className="h-full flex flex-col -m-8">
-            {/* Sticky action bar */}
-            <div className="bg-white px-8 py-4 border-b border-slate-200 flex justify-between items-center sticky top-0 z-20 shadow-sm">
-                <div className="flex items-center gap-4">
+        <div className="flex flex-col -m-8 h-[calc(100vh-57px)] bg-white overflow-hidden">
+            {/* Action bar (no longer needs sticky hack since parent container is height-locked) */}
+            <div className="bg-white px-6 md:px-8 py-4 border-b border-slate-200 flex justify-between items-center z-20 shadow-sm shrink-0">
+                <div className="flex items-center gap-3 md:gap-4">
                     <button onClick={() => navigate('/admin')} className="p-2 text-slate-400 hover:text-slate-800 hover:bg-slate-100 rounded-lg transition"><ArrowLeft className="w-5 h-5" /></button>
                     <div>
-                        <div className="flex items-center gap-2"><h1 className="text-xl font-black text-slate-800">Edit Report</h1><span className="px-2 py-0.5 bg-amber-100 text-amber-800 text-[10px] font-bold uppercase rounded-md tracking-wider">Drafting</span></div>
-                        <p className="text-sm text-slate-500 font-medium">Autosaved just now</p>
+                        <div className="flex items-center gap-2"><h1 className="text-lg md:text-xl font-black text-slate-800">Edit Report</h1><span className="hidden sm:inline-block px-2 py-0.5 bg-amber-100 text-amber-800 text-[10px] font-bold uppercase rounded-md tracking-wider">Drafting</span></div>
+                        <p className="text-xs md:text-sm text-slate-500 font-medium">Autosaved just now</p>
                     </div>
                 </div>
                 <div className="flex gap-3">
