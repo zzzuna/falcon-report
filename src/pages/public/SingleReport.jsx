@@ -12,14 +12,14 @@ import { MOCK_REPORT } from '../../data/mockReport';
 function StatusTrafficLight({ status }) {
     const s = status.toLowerCase();
 
-    let colorClass = 'bg-slate-400'; // default gray
+    let colorClass = 'text-slate-400'; // default gray
     let Icon = Info;
 
-    if (['completed', 'ready', 'connected', 'adequate', 'resolved', 'complete', 'active'].includes(s)) {
+    if (['completed', 'ready', 'connected', 'adequate', 'resolved', 'complete', 'active', 'closed'].includes(s)) {
         colorClass = 'text-emerald-500';
         Icon = CheckCircle2;
     }
-    else if (['in progress', 'ongoing', 'under review', 'design'].includes(s)) {
+    else if (['in progress', 'ongoing', 'on going', 'under review', 'design'].includes(s)) {
         colorClass = 'text-amber-500';
         Icon = Clock;
     }
