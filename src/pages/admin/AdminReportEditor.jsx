@@ -73,7 +73,7 @@ export function AdminReportEditor() {
     const getSerializedPayload = (publishStatus = 'Active') => ({
         id: 'weekly-17',
         title: formData.title,
-        date: formData.date,
+        date: new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }),
         prepared_by: 'Community & Property Management',
         status: publishStatus,
         executive_summary: formData.executiveSummary,
@@ -206,14 +206,14 @@ export function AdminReportEditor() {
                         {activeTab === 'Report Info' && (
                             <div className="space-y-6 animate-in fade-in">
                                 <h2 className="text-2xl font-black text-slate-800 uppercase tracking-widest border-b-2 border-slate-800 pb-2">Information</h2>
-                                <div className="grid grid-cols-2 gap-6">
+                                <div className="grid grid-cols-1 gap-6">
                                     <div>
                                         <label className="block text-xs uppercase tracking-widest font-bold text-slate-500 mb-2">Report Title</label>
                                         <input type="text" className="w-full text-lg font-bold border-b border-slate-300 py-2 focus:border-amber-500 outline-none transition" value={formData.title} onChange={e => setFormData({ ...formData, title: e.target.value })} />
                                     </div>
                                     <div>
-                                        <label className="block text-xs uppercase tracking-widest font-bold text-slate-500 mb-2">Week Ending Date</label>
-                                        <input type="date" className="w-full text-lg font-medium border-b border-slate-300 py-2 focus:border-amber-500 outline-none transition" value={formData.date} onChange={e => setFormData({ ...formData, date: e.target.value })} />
+                                        <span className="text-xs uppercase tracking-widest font-bold text-slate-400 block mb-1">Last Updated Date Tracker</span>
+                                        <span className="text-sm font-medium text-emerald-600 block bg-emerald-50 w-max px-3 py-1 rounded-md">{new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })} (Auto-Synched)</span>
                                     </div>
                                 </div>
                             </div>
