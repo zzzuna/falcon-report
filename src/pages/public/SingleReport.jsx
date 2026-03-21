@@ -356,10 +356,6 @@ export function SingleReport({ isLatest }) {
 
                         {/* Overlapping Progress Bar */}
                         <div className="flex-1 w-full mt-2 md:mt-0">
-                            <div className="flex justify-between items-end mb-2.5">
-                                <span className="text-xs font-bold text-slate-500 uppercase tracking-widest">Pipeline Progression</span>
-                                <span className="text-[10px] font-black text-slate-400 uppercase">Target: {report.kpis.total_offered}</span>
-                            </div>
                             <div className="h-4 sm:h-5 w-full bg-slate-100 rounded-full overflow-hidden relative shadow-inner">
                                 {/* Empty Base */}
                                 <div className="absolute inset-0 bg-slate-100"></div>
