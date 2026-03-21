@@ -221,39 +221,29 @@ export function SingleReport({ isLatest }) {
                         <section className="print:break-inside-avoid">
                             <SectionHeading title="Finance Status" />
                             <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex flex-col items-center">
-                                <div className="w-full max-w-[280px]">
-                                    <div className="mb-6 grid grid-cols-2 gap-4 text-center">
+                                <div className="w-full flex flex-col">
+                                    <div className="flex gap-8 w-full justify-between items-end mb-8 mt-2">
                                         <div>
-                                            <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1">Potential</p>
-                                            <p className="text-lg font-black text-slate-900">{formatAED(report.finance.potential)}</p>
+                                            <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1.5 shadow-sm">Potential</p>
+                                            <p className="text-2xl font-black text-slate-800 tracking-tighter leading-none">{formatAED(report.finance.potential)}</p>
                                         </div>
-                                        <div>
-                                            <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1">Realized</p>
-                                            <p className="text-lg font-black text-emerald-600">{formatAED(report.finance.realized)}</p>
+                                        <div className="border-l-2 border-slate-100 pl-8 text-right">
+                                            <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1.5 shadow-sm">Realized</p>
+                                            <p className="text-2xl font-black text-emerald-500 tracking-tighter leading-none">{formatAED(report.finance.realized)}</p>
                                         </div>
                                     </div>
-                                    <div className="h-48 w-full border-t border-slate-100 pt-6">
-                                        <ResponsiveContainer width="100%" height="100%">
-                                            <BarChart data={[
-                                                { name: 'Potential', value: report.finance.potential, fill: '#cbd5e1' },
-                                                { name: 'Realized', value: report.finance.realized, fill: '#10b981' }
-                                            ]} margin={{ top: 0, right: 0, left: -25, bottom: 0 }}>
-                                                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
-                                                <XAxis dataKey="name" tick={{ fill: '#64748b', fontSize: 11, fontWeight: 800, dy: 10 }} axisLine={false} tickLine={false} />
-                                                <YAxis tick={{ fill: '#94a3b8', fontSize: 10, fontWeight: 600 }} axisLine={false} tickLine={false} tickFormatter={(val) => `${val / 1000000}M`} />
-                                                <Tooltip cursor={{ fill: '#f8fafc' }} formatter={(value) => formatAED(value)} contentStyle={{ borderRadius: '8px', border: '1px solid #e2e8f0', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)', fontSize: '12px', fontWeight: 'bold' }} />
-                                                <Bar dataKey="value" radius={[4, 4, 0, 0]} barSize={50}>
-                                                    {
-                                                        [
-                                                            { fill: '#cbd5e1' },
-                                                            { fill: '#10b981' }
-                                                        ].map((entry, index) => (
-                                                            <Cell key={`cell-${index}`} fill={entry.fill} />
-                                                        ))
-                                                    }
-                                                </Bar>
-                                            </BarChart>
-                                        </ResponsiveContainer>
+                                    
+                                    <div className="w-full">
+                                        <div className="h-4 sm:h-5 w-full bg-slate-100 rounded-full overflow-hidden relative shadow-inner">
+                                            {/* Grey Base (Potential) */}
+                                            <div className="absolute inset-0 bg-slate-200"></div>
+                                            {/* Green Overlay (Realized) */}
+                                            <div className="absolute top-0 left-0 h-full bg-emerald-500 transition-all duration-1000 ease-out z-20" style={{ width: `${Math.min(100, (report.finance.realized / Math.max(1, report.finance.potential)) * 100)}%` }}></div>
+                                        </div>
+                                        <div className="flex justify-between mt-3">
+                                            <span className="text-[10px] font-bold text-slate-400 tracking-wide">100% Target</span>
+                                            <span className="text-[10px] font-bold text-emerald-500 tracking-wide">{Math.round((report.finance.realized / Math.max(1, report.finance.potential)) * 100)}% Realized</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
