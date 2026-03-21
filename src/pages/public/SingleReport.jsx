@@ -362,12 +362,9 @@ export function SingleReport({ isLatest }) {
                     </section>
                 )}
 
-                {/* FOOTER / ARCHIVE LINK */}
+                {/* FOOTER */}
                 <div className="mt-10 pt-8 border-t border-slate-200 flex flex-col items-center justify-center print:hidden">
                     <p className="text-sm font-bold text-slate-400 mb-4">End of Report.</p>
-                    <Link to="/reports" className="px-6 py-3 bg-slate-100 text-slate-700 hover:bg-slate-200 hover:text-slate-900 font-bold rounded-lg transition border border-slate-200">
-                        View Report Archive
-                    </Link>
                 </div>
 
             </div>
