@@ -38,9 +38,9 @@ export function AdminReportEditor() {
     useEffect(() => {
         if (!isLoading && !formData && dbReport) {
             setFormData({
-                title: dbReport.title || 'Falcon Island Weekly Handover Report',
-                date: dbReport.date || new Date().toISOString().split('T')[0],
-                executiveSummary: dbReport.executive_summary || '',
+                title: dbReport.title !== undefined ? dbReport.title : 'Falcon Island Weekly Handover Report',
+                date: dbReport.date !== undefined ? dbReport.date : new Date().toISOString().split('T')[0],
+                executiveSummary: dbReport.executive_summary !== undefined ? dbReport.executive_summary : '',
                 concerns: dbReport.key_concerns || [],
                 opportunities: dbReport.opportunities || [],
                 kpis: {
