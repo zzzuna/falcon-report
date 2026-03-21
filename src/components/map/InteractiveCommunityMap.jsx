@@ -53,12 +53,12 @@ export function InteractiveCommunityMap({ report }) {
             ...p,
             ...linked,
             title: linked.title || p.title, // Live Database truth overrides map inspector property
-            status: linked.status || p.status, // Live Database status overrides stale node status 
+            status: linked.status || p.status || 'Planned', // Native fallback parity making Admin Editor 'Planned' default match public viewer perfectly 
             id: p.id, // CRITICAL: Preserves unique map node UUID to prevent React DOM rendering collisions
             xPercent: p.xPercent,
             yPercent: p.yPercent,
             type: 'project'
-        } : { ...p, type: 'project' };
+        } : { ...p, type: 'project', status: p.status || 'Planned' };
     });
 
     const filteredPoints = enhancedPoints.filter(p => {
