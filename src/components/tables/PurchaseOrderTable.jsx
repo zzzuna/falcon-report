@@ -13,7 +13,7 @@ export function PurchaseOrderTable({ items }) {
     };
 
     return (
-        <section id="procurement" className="mb-10 print:break-inside-avoid">
+        <section id="procurement" className="mb-6 print:break-inside-avoid">
             <div className="border-b-2 border-slate-800 pb-2 mb-6">
                 <h2 className="text-xl font-black text-slate-900 uppercase tracking-widest">Procurement & PO Status</h2>
             </div>

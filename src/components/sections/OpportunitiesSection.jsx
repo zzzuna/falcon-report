@@ -3,7 +3,7 @@ import { Lightbulb } from 'lucide-react';
 export function OpportunitiesSection({ opportunities }) {
     if (!opportunities || opportunities.length === 0) return null;
     return (
-        <section id="opportunities" className="mb-10 print:break-inside-avoid">
+        <section id="opportunities" className="mb-6 print:break-inside-avoid">
             <div className="border-b-2 border-slate-800 pb-2 mb-6 print:break-after-avoid">
                 <h2 className="text-xl font-black text-slate-900 uppercase tracking-widest">Opportunities</h2>
             </div>

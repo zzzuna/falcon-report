@@ -76,7 +76,7 @@ export function InteractiveCommunityMap({ report }) {
     });
 
     return (
-        <section id="community-map" className="mb-10 print:hidden relative">
+        <section id="community-map" className="mb-6 print:hidden relative">
             <div className="border-b-2 border-slate-800 pb-2 mb-6">
                 <h2 className="text-xl font-black text-slate-900 uppercase tracking-widest flex items-center gap-2">
                     <MapIcon className="w-5 h-5 text-slate-500" />

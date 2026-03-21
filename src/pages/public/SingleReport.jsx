@@ -82,7 +82,7 @@ function KPICard({ title, value, total, subtitle, caption, valueColor = "text-sl
 function ListSection({ title, items, pageBreak }) {
     if (!items || items.length === 0) return null;
     return (
-        <section className={`mb-10 print:break-inside-avoid ${pageBreak ? 'print:break-before-page' : ''}`}>
+        <section className={`mb-6 print:break-inside-avoid ${pageBreak ? 'print:break-before-page' : ''}`}>
             <SectionHeading title={title} />
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {items.map((item, i) => (
@@ -135,7 +135,7 @@ export function SingleReport({ isLatest }) {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 print:p-0 print:max-w-none">
 
                 {/* HEADER */}
-                <header className="bg-white border border-slate-200 p-6 sm:p-8 rounded-xl shadow-sm mb-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 print:border-none print:shadow-none print:p-0 print:mb-6">
+                <header className="bg-white border border-slate-200 p-6 sm:p-8 rounded-xl shadow-sm mb-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 print:border-none print:shadow-none print:p-0 print:mb-6">
                     <div>
                         <div className="flex items-center gap-3 mb-2">
                             <div className="w-10 h-10 bg-slate-900 text-white font-black text-xl flex items-center justify-center rounded-md">FI</div>
@@ -157,7 +157,7 @@ export function SingleReport({ isLatest }) {
                 </header>
 
                 {/* EXECUTIVE SUMMARY */}
-                <section className="mb-10 print:break-inside-avoid">
+                <section className="mb-6 print:break-inside-avoid">
                     <SectionHeading title="Executive Summary" />
                     <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
                         <p className="text-slate-800 font-medium leading-relaxed text-lg">
@@ -167,7 +167,7 @@ export function SingleReport({ isLatest }) {
                 </section>
 
                 {/* KPI STRIP */}
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 mb-10 print:grid-cols-6 items-stretch">
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 mb-6 print:grid-cols-6 items-stretch">
                     <KPICard title="Total Offered" value={report.kpis.total_offered} subtitle="/ 240" total={240} valueColor="text-blue-600" caption="Total Offered / Total Number" />
                     <KPICard title="Villas HO" value={report.kpis.villas_handed_over} subtitle={`/ ${report.kpis.total_offered}`} total={report.kpis.total_offered} valueColor="text-emerald-500" caption="Villas HO / Total Offered" />
                     <KPICard title="Letters Sent" value={report.kpis.letters_dispatched} subtitle={`/ ${report.kpis.total_offered}`} total={report.kpis.total_offered} valueColor="text-indigo-600" caption="Letters Sent / Total Offered" />
@@ -176,9 +176,9 @@ export function SingleReport({ isLatest }) {
                     <KPICard title="No Shows" value={report.kpis.owners_did_not_show} subtitle={`/ ${report.kpis.paid_soas}`} total={report.kpis.paid_soas} valueColor="text-rose-500" caption="No Shows / Paid SOA's" />
                 </div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-10">
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
                     {/* LEFT COLUMN: SUMMARIES */}
-                    <div className="lg:col-span-2 space-y-10">
+                    <div className="lg:col-span-2 space-y-6">
                         {/* Executive Summary has been moved above the KPIs */}
 
                         <section className="print:break-inside-avoid">
@@ -202,7 +202,7 @@ export function SingleReport({ isLatest }) {
                     </div>
 
                     {/* RIGHT COLUMN: FINANCE */}
-                    <div className="lg:col-span-1 space-y-10">
+                    <div className="lg:col-span-1 space-y-6">
                         <section className="print:break-inside-avoid">
                             <SectionHeading title="Finance Status" />
                             <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex flex-col items-center">
@@ -247,7 +247,7 @@ export function SingleReport({ isLatest }) {
                 </div>
 
                 {/* UPGRADE PROJECTS TABLE */}
-                <section className="mb-10 print:break-inside-avoid">
+                <section className="mb-6 print:break-inside-avoid">
                     <div className="flex justify-between items-end border-b-2 border-slate-800 pb-2 mb-6">
                         <h2 className="text-xl font-black text-slate-900 uppercase tracking-widest">Upgrade Projects</h2>
                         <div className="text-right">
@@ -293,7 +293,7 @@ export function SingleReport({ isLatest }) {
                 <InteractiveCommunityMap report={report} />
 
                 {/* VILLA NUMBERS MAPS */}
-                <section className="mb-14 print:hidden">
+                <section className="mb-6 print:hidden">
                     <div className="flex gap-4 justify-center mt-6 mb-6">
                         <button
                             onClick={() => setActiveVillaMap(activeVillaMap === 'north' ? null : 'north')}
@@ -310,13 +310,13 @@ export function SingleReport({ isLatest }) {
                     </div>
 
                     {activeVillaMap === 'north' && (
-                        <div className="bg-white p-2 rounded-xl border border-slate-200 shadow-sm animate-in fade-in slide-in-from-top-4 mb-10 overflow-hidden">
+                        <div className="bg-white p-2 rounded-xl border border-slate-200 shadow-sm animate-in fade-in slide-in-from-top-4 mb-6 overflow-hidden">
                             <img src="/villa-north-hi-res.png" alt="North Villa Numbers" className="w-full h-auto object-contain cursor-zoom-in hover:scale-150 transition-transform duration-700 origin-center" />
                         </div>
                     )}
 
                     {activeVillaMap === 'south' && (
-                        <div className="bg-white p-2 rounded-xl border border-slate-200 shadow-sm animate-in fade-in slide-in-from-top-4 mb-10 overflow-hidden">
+                        <div className="bg-white p-2 rounded-xl border border-slate-200 shadow-sm animate-in fade-in slide-in-from-top-4 mb-6 overflow-hidden">
                             <img src="/villa-south-hi-res.png" alt="South Villa Numbers" className="w-full h-auto object-contain cursor-zoom-in hover:scale-150 transition-transform duration-700 origin-center" />
                         </div>
                     )}
@@ -327,7 +327,7 @@ export function SingleReport({ isLatest }) {
                 {/* DYNAMIC LISTS */}
                 <ListSection title="Pre-Handover Readiness" items={report.readiness_setup} pageBreak={true} />
 
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                     <ListSection title="EHS & Compliance" items={report.ehs_compliance} />
                     <ListSection title="Legal Affairs" items={report.legal} />
                 </div>
@@ -338,7 +338,7 @@ export function SingleReport({ isLatest }) {
 
                 {/* ATTACHMENTS FOR IMAGES */}
                 {report.attachments && report.attachments.length > 0 && (
-                    <section className="mb-10 print:break-inside-avoid">
+                    <section className="mb-6 print:break-inside-avoid">
                         <SectionHeading title="Picture Gallery" />
                         <div className="flex flex-wrap gap-5">
                             {report.attachments.map((att) => (
@@ -363,7 +363,7 @@ export function SingleReport({ isLatest }) {
                 )}
 
                 {/* FOOTER / ARCHIVE LINK */}
-                <div className="mt-16 pt-8 border-t border-slate-200 flex flex-col items-center justify-center print:hidden">
+                <div className="mt-10 pt-8 border-t border-slate-200 flex flex-col items-center justify-center print:hidden">
                     <p className="text-sm font-bold text-slate-400 mb-4">End of Report.</p>
                     <Link to="/reports" className="px-6 py-3 bg-slate-100 text-slate-700 hover:bg-slate-200 hover:text-slate-900 font-bold rounded-lg transition border border-slate-200">
                         View Report Archive
