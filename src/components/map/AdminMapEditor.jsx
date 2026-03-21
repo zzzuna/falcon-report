@@ -318,8 +318,62 @@ export function AdminMapEditor({ mapSettings, mapPoints, mapAreas, upgrades, onC
                                     <option value="Cancelled">Cancelled</option>
                                 </select>
                             </div>
+                            {activePoint.type !== 'villa' && (
+                                <>
+                                    <div>
+                                        <label className="text-[10px] font-black uppercase text-slate-500">Project Owner</label>
+                                        <input
+                                            type="text"
+                                            value={activeLinked ? activeLinked.owner : (activePoint.owner || '')}
+                                            onChange={(e) => {
+                                                const val = e.target.value;
+                                                onChangePoints(mapPoints.map(mp => mp.id === activePoint.id ? { ...mp, owner: val } : mp));
+                                                if (activeLinked && onChangeUpgrades) {
+                                                    onChangeUpgrades(upgrades.map(u => String(u.id) === String(activeLinked.id) ? { ...u, owner: val } : u));
+                                                }
+                                            }}
+                                            className="w-full text-sm font-bold border-b border-slate-300 py-1 bg-transparent focus:border-slate-800 outline-none"
+                                            placeholder="e.g. FM Team"
+                                        />
+                                    </div>
+                                    <div className="grid grid-cols-2 gap-2">
+                                        <div>
+                                            <label className="text-[10px] font-black uppercase text-slate-500">Target Date</label>
+                                            <input
+                                                type="text"
+                                                value={activeLinked ? activeLinked.date : (activePoint.date || '')}
+                                                onChange={(e) => {
+                                                    const val = e.target.value;
+                                                    onChangePoints(mapPoints.map(mp => mp.id === activePoint.id ? { ...mp, date: val } : mp));
+                                                    if (activeLinked && onChangeUpgrades) {
+                                                        onChangeUpgrades(upgrades.map(u => String(u.id) === String(activeLinked.id) ? { ...u, date: val } : u));
+                                                    }
+                                                }}
+                                                className="w-full text-sm font-bold border-b border-slate-300 py-1 bg-transparent focus:border-slate-800 outline-none"
+                                                placeholder="e.g. Apr 15"
+                                            />
+                                        </div>
+                                        <div>
+                                            <label className="text-[10px] font-black uppercase text-slate-500">Est Cost (AED)</label>
+                                            <input
+                                                type="number"
+                                                value={activeLinked ? activeLinked.cost : (activePoint.cost || '')}
+                                                onChange={(e) => {
+                                                    const val = Number(e.target.value);
+                                                    onChangePoints(mapPoints.map(mp => mp.id === activePoint.id ? { ...mp, cost: val } : mp));
+                                                    if (activeLinked && onChangeUpgrades) {
+                                                        onChangeUpgrades(upgrades.map(u => String(u.id) === String(activeLinked.id) ? { ...u, cost: val } : u));
+                                                    }
+                                                }}
+                                                className="w-full text-sm font-bold border-b border-slate-300 py-1 bg-transparent focus:border-slate-800 outline-none"
+                                                placeholder="Cost"
+                                            />
+                                        </div>
+                                    </div>
+                                </>
+                            )}
                             <div>
-                                <label className="text-[10px] font-black uppercase text-slate-500">Hover Comments</label>
+                                <label className="text-[10px] font-black uppercase text-slate-500">Hover Comments & Description</label>
                                 <textarea
                                     rows="2"
                                     value={activePoint.comments || ''}
