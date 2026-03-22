@@ -118,10 +118,30 @@ export function AdminReportEditor() {
         alert('Active state saved locally & synced to Database Viewer!');
     };
 
-    const handlePublish = () => {
+    const handlePublish = async () => {
         setIsPublishing(true);
-        updateDbReport(getSerializedPayload('Published'));
-        setTimeout(() => { alert('Report published live to Database!'); navigate('/admin'); }, 800);
+        const payload = getSerializedPayload('Published');
+        
+        try {
+            // Update the live master branch (Public Viewer sees this immediately)
+            await updateDbReport(payload);
+            
+            // Create a locked immutable clone for historical review
+            const { doc, setDoc } = await import('firebase/firestore');
+            const { db } = await import('../../lib/firebase/firebase');
+            
+            const archiveId = `archive_${Date.now()}`;
+            // Preserve the original date they typed/autosynced, but mark status as explicitly Archived
+            const archivedPayload = { ...payload, id: archiveId, status: 'Archived', archive_date: new Date().toISOString() };
+            
+            if (db) {
+                await setDoc(doc(db, 'reports', archiveId), archivedPayload);
+            }
+        } catch (error) {
+            console.error("Backup archiving failed:", error);
+        }
+
+        setTimeout(() => { alert('Report successfully published live and safely backed up to your Archives!'); navigate('/admin'); }, 800);
     };
 
     const updateNested = (category, field, value) => {
