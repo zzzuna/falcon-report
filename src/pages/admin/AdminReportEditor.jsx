@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Save, Send, Plus, Trash2, ArrowLeft, MoreHorizontal, Image as ImageIcon, Printer, Download, Upload } from 'lucide-react';
+import { Save, Send, Plus, Trash2, ArrowLeft, MoreHorizontal, Image as ImageIcon, Printer, Download, Upload, Archive } from 'lucide-react';
 import { storage } from '../../lib/firebase/firebase';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { RepeatableItemEditor } from '../../components/forms/RepeatableItemEditor';
@@ -114,19 +114,12 @@ export function AdminReportEditor() {
         }
     }, [formData]);
 
-    const handleSaveActive = () => {
-        alert('Active state saved locally & synced to Database Viewer!');
-    };
-
-    const handlePublish = async () => {
+    const handleArchiveSnapshot = async () => {
         setIsPublishing(true);
-        const payload = getSerializedPayload('Published');
+        const payload = getSerializedPayload('Active');
         
         try {
-            // Update the live master branch (Public Viewer sees this immediately)
-            await updateDbReport(payload);
-            
-            // Create a locked immutable clone for historical review
+            // Create a locked immutable clone for historical review, completely independent of the Live dash branch
             const { doc, setDoc } = await import('firebase/firestore');
             const { db } = await import('../../lib/firebase/firebase');
             
@@ -137,11 +130,13 @@ export function AdminReportEditor() {
             if (db) {
                 await setDoc(doc(db, 'reports', archiveId), archivedPayload);
             }
+            alert('Live dashboard state securely cloned and historically backed up to your Archives Vault!');
         } catch (error) {
             console.error("Backup archiving failed:", error);
+            alert('Snapshot backup failed to generate correctly. See console.');
         }
 
-        setTimeout(() => { alert('Report successfully published live and safely backed up to your Archives!'); navigate('/admin'); }, 800);
+        setIsPublishing(false);
     };
 
     const updateNested = (category, field, value) => {
@@ -194,11 +189,8 @@ export function AdminReportEditor() {
                     <button onClick={() => setIsComparing(!isComparing)} className={`px-4 py-2 rounded-xl font-bold transition flex items-center gap-2 ${isComparing ? 'bg-amber-100 text-amber-800 border border-amber-200 shadow-sm' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'}`}>
                         Compare Prev
                     </button>
-                    <button onClick={handleSaveActive} className="px-5 py-2.5 bg-slate-100 text-slate-700 hover:bg-slate-200 rounded-xl font-bold transition flex items-center gap-2">
-                        <Save className="w-4 h-4" /> Save Active
-                    </button>
-                    <button onClick={handlePublish} disabled={isPublishing} className="px-5 py-2.5 bg-emerald-600 text-white hover:bg-emerald-700 rounded-xl font-bold transition flex items-center gap-2 disabled:opacity-50">
-                        <Send className="w-4 h-4" /> {isPublishing ? 'Publishing...' : 'Publish'}
+                    <button onClick={handleArchiveSnapshot} disabled={isPublishing} className="px-5 py-2.5 bg-indigo-600 text-white hover:bg-indigo-700 rounded-xl font-bold transition flex items-center gap-2 shadow-sm disabled:opacity-50">
+                        <Archive className="w-4 h-4" /> {isPublishing ? 'Archiving...' : 'Archive Snapshot'}
                     </button>
                 </div>
             </div>
